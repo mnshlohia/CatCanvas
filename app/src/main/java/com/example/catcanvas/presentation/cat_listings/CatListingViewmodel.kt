@@ -22,29 +22,28 @@ class CatListingViewmodel @Inject constructor(
         getCatListings()
     }
 
-    private fun getCatListings() {
+    fun getCatListings() {
 
         viewModelScope.launch {
-            repository.getCatListings()
-                .collect { result ->
-                    when (result) {
-                        is Resource.Error -> {
+            repository.getCatListings().collect { result ->
+                when (result) {
+                    is Resource.Error -> {
 
-                        }
+                    }
 
-                        is Resource.Loading -> {
-                            state = state.copy(isLoading = result.isLoading)
-                        }
+                    is Resource.Loading -> {
+                        state = state.copy(isLoading = result.isLoading)
+                    }
 
-                        is Resource.Success -> {
-                            result.data?.let { listings ->
-                                state = state.copy(
-                                    cats = listings
-                                )
-                            }
+                    is Resource.Success -> {
+                        result.data?.let { listings ->
+                            state = state.copy(
+                                cats = listings
+                            )
                         }
                     }
                 }
+            }
         }
 
     }
