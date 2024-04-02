@@ -73,7 +73,6 @@ fun CatListingsScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 16.dp)
-                        .clickable { }
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
             }
